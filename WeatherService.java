@@ -7,5 +7,13 @@ public class WeatherService {
         return random.nextBoolean(); 
     }
 
-    
+    public String getWeather(String city) {
+        if (city.equalsIgnoreCase("Qom")) {
+            return "Sunny";
+        } else if (city.equalsIgnoreCase("Rasht")) {
+            return "Rainy";
+        } else {
+            return "Unknown";
+        }
+    }
 }

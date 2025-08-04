@@ -2,7 +2,7 @@ import java.util.List;
 
 public class AgentMediator implements Mediator {
     private WeatherService weatherService = new WeatherService();
-    private TourismService tourismService = new TourismService();
+    private TourismService tourismService;
     private Mediator logger = new LogMediator();
 
     public void mediate(MessageContext context) {
@@ -26,5 +26,19 @@ public class AgentMediator implements Mediator {
             mediate(context);
             System.out.println("----------");
         }
+    }
+
+    public AgentMediator() {
+        this.weatherService = new WeatherService();
+        this.tourismService = new TourismService(this); 
+    }
+
+    public String requestWeather(String city) {
+       // System.out.println(weatherService.getWeather(city));
+        return weatherService.getWeather(city);
+    }
+
+    public String requestTourismAdvice(String city) {
+        return tourismService.getTravelRecommendation(city);
     }
 }
